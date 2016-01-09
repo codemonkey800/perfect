@@ -48,7 +48,7 @@ $(TARGETS): builddir
 	@echo $@
 	$(SWIFTC) $(SWIFTC_FLAGS) '$@/$@.swift' \
 		-o $@.o -module-name $@ -emit-module-path PerfectLibraries/$@.swiftmodule
-	clang++ $(LFLAGS) obj/$@.o -o PerfectLibraries/$@.so
+	clang++ $(LFLAGS) $@.o -o PerfectLibraries/$@.so
 
 clean:
 	rm -rvf *.o PerfectLibraries SQLiteDBs
