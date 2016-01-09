@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Build Perfect
 WORKDIR /usr/local/src/Perfect
-RUN make && make install && \
+RUN cd PerfectLib && \
+    make && make install && \
     cd ../PerfectServer && \
     make && make install
 
