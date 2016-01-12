@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     libstdc++6-4.7-dev \
     libxml2 \
+    python-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
     # Downloads Swift snapshot and installs it
