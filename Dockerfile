@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libedit-dev \
     libevent-dev \
     libicu-dev \
+    libpq-dev \
     libsqlite3-dev \
     libssl-dev \
     libstdc++6-4.7-dev \
@@ -29,6 +30,10 @@ WORKDIR /usr/local/src/Perfect
 RUN cd PerfectLib && \
     make && make install && \
     cd ../PerfectServer && \
-    make && make install
+    make && make install && \
+    cd ../Connectors/PostgreSQL && \
+    make && make clean && \
+    ln -s $(pwd)/PostgreSQL.swiftmodule /usr/local/lib/ && \
+    ln -s $(pwd)/PostgreSQL.so /usr/local/lib/
 
 WORKDIR /
