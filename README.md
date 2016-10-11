@@ -1,4 +1,8 @@
 # Docker Image - Perfect
+
+[![](https://images.microbadger.com/badges/version/codemonkey800/perfect.svg)](https://microbadger.com/images/codemonkey800/perfect "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/codemonkey800/perfect.svg)](https://microbadger.com/images/codemonkey800/perfect "Get your own image badge on microbadger.com")
+
 A base Docker image for deploying [Swift](https://swift.org/) web applications using the [Perfect](http://www.perfect.org/) web framework. The image's base is [Ubuntu 15.10](https://hub.docker.com/_/ubuntu/), and has the latest snapshot built by Apple. The perfect library is built directly from source.
 
 PerfectLib is installed in `/usr/local/lib` and the HTTP server and CGI executables are intalled in `/usr/local/bin`. The source is downloaded into `/usr/local/src`.
