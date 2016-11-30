@@ -1,7 +1,12 @@
-# Docker Image - Perfect
+# Docker Image - Perfect - DEPRECATED
 
 [![](https://images.microbadger.com/badges/version/codemonkey800/perfect.svg)](https://microbadger.com/images/codemonkey800/perfect "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/codemonkey800/perfect.svg)](https://microbadger.com/images/codemonkey800/perfect "Get your own image badge on microbadger.com")
+*This project is deprecated. With Swift 3 and the new package manager, there's really no need
+to compile the project normally. In addition, the Perfect framework also has a template project
+that has a Dockerfile included, so you can use that as a base for your project.*
+
+The template project is located [here](https://github.com/PerfectlySoft/PerfectTemplate).
 
 A base Docker image for deploying [Swift](https://swift.org/) web applications using the [Perfect](http://www.perfect.org/) web framework. The image's base is [Ubuntu 15.10](https://hub.docker.com/_/ubuntu/), and has the latest snapshot built by Apple. The perfect library is built directly from source.
 
@@ -34,9 +39,9 @@ PERFECT_ROOT = /usr/local/src/Perfect/PerfectLib
 MODULE_CACHE_PATH = /tmp/modulecache
 SWIFTC = swift
 SWIFTC_FLAGS = -frontend -c -module-cache-path $(MODULE_CACHE_PATH) -emit-module \
-	           -I /usr/local/lib -I $(PERFECT_ROOT)/linked/LibEvent \
-			   -I $(PERFECT_ROOT)/linked/OpenSSL_Linux -I $(PERFECT_ROOT)/linked/ICU \
-			   -I $(PERFECT_ROOT)/linked/SQLite3 -I $(PERFECT_ROOT)/linked/LinuxBridge
+               -I /usr/local/lib -I $(PERFECT_ROOT)/linked/LibEvent \
+               -I $(PERFECT_ROOT)/linked/OpenSSL_Linux -I $(PERFECT_ROOT)/linked/ICU \
+               -I $(PERFECT_ROOT)/linked/SQLite3 -I $(PERFECT_ROOT)/linked/LinuxBridge
 Linux_SHLIB_PATH = $(shell dirname $(shell dirname $(shell which swiftc)))/lib/swift/linux
 SHLIB_PATH = -L$($(OS)_SHLIB_PATH)
 LFLAGS = $(SHLIB_PATH) -lFoundation -lswiftCore -lswiftGlibc /usr/local/lib/PerfectLib.so \
@@ -46,16 +51,16 @@ TARGETS = HelloWorld
 all: $(TARGETS)
 
 builddir:
-	mkdir -p PerfectLibraries
+    mkdir -p PerfectLibraries
 
 $(TARGETS): builddir
-	@echo $@
-	$(SWIFTC) $(SWIFTC_FLAGS) '$@/$@.swift' \
-		-o $@.o -module-name $@ -emit-module-path PerfectLibraries/$@.swiftmodule
-	clang++ $(LFLAGS) $@.o -o PerfectLibraries/$@.so
+    @echo $@
+    $(SWIFTC) $(SWIFTC_FLAGS) '$@/$@.swift' \
+        -o $@.o -module-name $@ -emit-module-path PerfectLibraries/$@.swiftmodule
+    clang++ $(LFLAGS) $@.o -o PerfectLibraries/$@.so
 
 clean:
-	rm -rvf *.o PerfectLibraries SQLiteDBs
+    rm -rvf *.o PerfectLibraries SQLiteDBs
 ```
 
 # License
